@@ -100,6 +100,12 @@
 
                 <li class='sidebar-title'>Forms &amp; Tables</li>
                 <li class="sidebar-item  ">
+                    <a href="{{ route('kategori.index') }}" class='sidebar-link'>
+                        <i data-feather="layers" width="20"></i>
+                        <span>Kategori</span>
+                    </a>
+                </li>
+                <li class="sidebar-item  ">
                     <a href="{{ route('barang.index') }}" class='sidebar-link'>
                         <i data-feather="layers" width="20"></i>
                         <span>Form Editor</span>
