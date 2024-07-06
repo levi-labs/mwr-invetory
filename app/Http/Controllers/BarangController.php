@@ -12,7 +12,10 @@ class BarangController extends Controller
      */
     public function index()
     {
-        //
+        $title = 'Halaman Daftar Barang';
+        $data = Barang::all();
+
+        return view('barang.index', compact('title', 'data'));
     }
 
     /**
@@ -20,7 +23,10 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        $title  = 'Halaman Tambah Barang';
+        $barang = new Barang();
+        $kode   = $barang->getKodeBarang();
+        return view('barang.create', compact('title'));
     }
 
     /**

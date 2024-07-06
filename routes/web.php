@@ -39,5 +39,5 @@ Route::controller(BarangController::class)->prefix('barang')->group(function () 
     Route::post('/store', 'store')->name('barang.store');
     Route::get('/edit/{barang}', 'edit')->name('barang.edit');
     Route::put('/update/{barang}', 'update')->name('barang.update');
-    Route::delete('delete/{brang}', 'destroy')->name('barang.destroy');
+    Route::delete('delete/{barang}', 'destroy')->name('barang.delete');
 });
