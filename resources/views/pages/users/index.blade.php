@@ -11,7 +11,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Daftar Barang</h4>
+                    <h4 class="card-title">Daftar User</h4>
                     @if (session()->has('success'))
                         <div class="alert alert-success">
                             {{ session()->get('success') }}
@@ -25,7 +25,7 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <a href=" {{ route('barang.create') }}" class="btn btn-primary">Tambah <i
+                        <a href=" {{ route('users.create') }}" class="btn btn-primary">Tambah <i
                                 class="fa-solid fa-plus"></i></a>
                     </div>
                     <!-- table hover -->
@@ -34,9 +34,10 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Kode</th>
                                     <th>Nama</th>
-                                    <th>Stok</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -44,13 +45,15 @@
                                 @foreach ($data as $item)
                                     <tr>
                                         <td class="text-bold-500">{{ $loop->iteration }}</td>
-                                        <td>{{ $item->kode }}</td>
-                                        <td class="text-bold-500">{{ $item->nama }}</td>
-                                        <td>{{ $item->stok }}</td>
+                                        <td>{{ $item->nama }}</td>
+                                        <td class="text-bold-500">{{ $item->username }}</td>
+                                        <td>{{ $item->email }}</td>
+                                        <td>{{ $item->role }}</td>
                                         <td>
-                                            <a href="{{ route('barang.show', $item->id) }}" class="btn btn-info">Detail</a>
-                                            <a href="{{ route('barang.edit', $item->id) }}" class="btn btn-warning">Edit</a>
-                                            <form action="{{ route('barang.delete', $item->id) }}" method="POST"
+                                            <a href="{{ route('users.reset-password', $item->id) }}"
+                                                class="btn btn-dark">Reset Password</a>
+                                            <a href="{{ route('users.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                                            <form action="{{ route('users.delete', $item->id) }}" method="POST"
                                                 class="d-inline">
                                                 @csrf
                                                 @method('DELETE')

@@ -1,18 +1,18 @@
 <div id="sidebar" class='active'>
     <div class="sidebar-wrapper active">
         <div class="sidebar-header">
-            <img src="assets/images/logo.svg" alt="" srcset="">
+            <img src="{{ asset('/logo_tpp.png') }}" alt="" srcset="">
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
                 <li class='sidebar-title'>Main Menu</li>
                 <li class="sidebar-item active ">
-                    <a href="index.html" class='sidebar-link'>
+                    <a href="{{ route('dashboard') }}" class='sidebar-link'>
                         <i data-feather="home" width="20"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sidebar-item  has-sub">
+                {{-- <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i data-feather="triangle" width="20"></i>
                         <span>Components</span>
@@ -77,28 +77,28 @@
 
                     </ul>
 
-                </li>
+                </li> --}}
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i data-feather="briefcase" width="20"></i>
-                        <span>Extra Components</span>
+                        <span>Menu Barang</span>
                     </a>
                     <ul class="submenu ">
                         <li>
-                            <a href="component-extra-avatar.html">Avatar</a>
+                            <a href="{{ route('barang.index') }}">Daftar Barang</a>
                         </li>
-
                         <li>
-                            <a href="component-extra-divider.html">Divider</a>
+                            <a href="{{ route('barang-masuk.index') }}">Barang Masuk</a>
                         </li>
-
+                        <li>
+                            <a href="{{ route('barang-keluar.index') }}">Barang Keluar</a>
+                        </li>
                     </ul>
-
                 </li>
 
 
 
-                <li class='sidebar-title'>Forms &amp; Tables</li>
+                <li class='sidebar-title'>Other Menu</li>
                 <li class="sidebar-item  ">
                     <a href="{{ route('kategori.index') }}" class='sidebar-link'>
                         <i data-feather="layers" width="20"></i>
@@ -106,12 +106,26 @@
                     </a>
                 </li>
                 <li class="sidebar-item  ">
-                    <a href="{{ route('barang.index') }}" class='sidebar-link'>
-                        <i data-feather="layers" width="20"></i>
-                        <span>Form Editor</span>
+                    <a href="{{ route('supplier.index') }}" class='sidebar-link'>
+                        <i data-feather="grid" width="20"></i>
+                        <span>Supplier</span>
                     </a>
                 </li>
-
+                {{-- <li class="sidebar-item  ">
+                    <a href="{{ route('barang.index') }}" class='sidebar-link'>
+                        <i data-feather="layers" width="20"></i>
+                        <span>Barang</span>
+                    </a>
+                </li> --}}
+                @if (Auth::user()->role == 'superadmin')
+                    <li class='sidebar-title'>User Management</li>
+                    <li class="sidebar-item  "></li>
+                    <a href="{{ route('users.index') }}" class='sidebar-link'>
+                        <i data-feather="users" width="20"></i>
+                        <span>Daftar User</span>
+                    </a>
+                    </li>
+                @endif
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

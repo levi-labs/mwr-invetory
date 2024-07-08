@@ -9,6 +9,8 @@ class Barang extends Model
 {
     use HasFactory;
 
+    protected $table = 'barang';
+    protected $guarded = ['id'];
 
     public function getKodeBarang()
     {
@@ -25,5 +27,15 @@ class Barang extends Model
         }
 
         return $number;
+    }
+
+    public function getImage()
+    {
+        return '/storage/' . $this->gambar;
+    }
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id', 'id');
     }
 }
