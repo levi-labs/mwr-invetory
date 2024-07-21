@@ -84,7 +84,7 @@ class UserController extends Controller
         try {
             $user->delete();
             DB::commit();
-            return redirect()->route('user.index')->with('success', 'Data User berhasil dihapus');
+            return back()->with('success', 'Data User berhasil dihapus');
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->back()->with('error', $th->getMessage());
