@@ -22,7 +22,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if (auth()->check()) {
+        return view('pages.dashboard.index');
+    } else {
+        return view('pages.auth.login');
+    }
 });
 
 Route::controller(AuthController::class)->group(function () {
