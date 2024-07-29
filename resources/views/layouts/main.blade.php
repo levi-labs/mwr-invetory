@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? 'Moving Weight Average' }}</title>
+    <title>{{ $title ?? 'Sistem Informasi Moving Weight Average' }}</title>
 
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('assets/vendors/simple-datatables/style.css') }}"> --}}
