@@ -68,7 +68,6 @@ class UserController extends Controller
             $user->username = $request->username;
             $user->role = $request->role;
             $user->email = $request->email;
-            $user->password = bcrypt($request->password);
             $user->save();
             DB::commit();
             return redirect()->route('users.index')->with('success', 'Data User berhasil diupdate');
