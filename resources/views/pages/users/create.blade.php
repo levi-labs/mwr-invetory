@@ -12,7 +12,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Barang Masuk</h4>
+                    <h4 class="card-title">Form Tambah User</h4>
                     @if (session()->has('error'))
                         <div class="alert alert-danger">
                             {{ session()->get('error') }}
