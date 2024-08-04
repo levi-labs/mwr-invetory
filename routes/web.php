@@ -54,6 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::controller(BarangController::class)->prefix('barang')->group(function () {
         Route::get('/', 'index')->name('barang.index');
+        Route::post('/search', 'index')->name('barang.search');
         Route::get('/create', 'create')->name('barang.create');
         Route::get('/show/{barang}', 'show')->name('barang.show');
         Route::post('/store', 'store')->name('barang.store');
@@ -63,6 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::controller(BarangMasukController::class)->prefix('barang-masuk')->group(function () {
         Route::get('/', 'index')->name('barang-masuk.index');
+        Route::post('/search', 'index')->name('barang-masuk.search');
         Route::get('/create', 'create')->name('barang-masuk.create');
         Route::get('/show/{barangMasuk}', 'show')->name('barang-masuk.show');
         Route::post('/store', 'store')->name('barang-masuk.store');
@@ -73,6 +75,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::controller(BarangKeluarController::class)->prefix('barang-keluar')->group(function () {
         Route::get('/', 'index')->name('barang-keluar.index');
+        Route::post('/search', 'index')->name('barang-keluar.search');
         Route::get('/create', 'create')->name('barang-keluar.create');
         Route::get('/show/{barangKeluar}', 'show')->name('barang-keluar.show');
         Route::post('/store', 'store')->name('barang-keluar.store');

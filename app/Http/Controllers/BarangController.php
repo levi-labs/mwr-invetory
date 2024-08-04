@@ -12,12 +12,26 @@ class BarangController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = 'Halaman Daftar Barang';
-        $data = Barang::all();
+        $search = $request->search;
+        try {
+            if (isset($search) || $search != null) {
+                $data = Barang::where('kode', 'like', '%' . $search . '%')
+                    ->orWhere('nama', 'like', '%' . $search . '%')
+                    ->orWhere('kode', 'like', '%' . $search . '%')
+                    ->get();
+                session()->flash('success', 'Data Ditemukan');
+                return view('pages.barang.index', compact('title', 'data'));
+            } else {
+                $data = Barang::all();
 
-        return view('pages.barang.index', compact('title', 'data'));
+                return view('pages.barang.index', compact('title', 'data'));
+            }
+        } catch (\Exception $th) {
+            return back()->with('error', $th->getMessage());
+        }
     }
 
     /**

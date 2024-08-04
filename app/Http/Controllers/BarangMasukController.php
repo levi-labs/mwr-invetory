@@ -13,11 +13,32 @@ class BarangMasukController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = 'Halaman Barang Masuk';
-        $data  = BarangMasuk::all();
-        return view('pages.barang-masuk.index', compact('title', 'data'));
+        $search = $request->search;
+        try {
+            if (isset($search) || $search != null) {
+                $data = DB::table('barang_masuk')
+                    ->join('barang', 'barang.id', '=', 'barang_masuk.barang_id')
+                    ->join('supplier', 'supplier.id', '=', 'barang_masuk.supplier_id')
+                    ->select('barang_masuk.*', 'supplier.nama as supplier', 'barang.nama')
+                    ->where('barang_masuk.kode', 'like', '%' . $search . '%')
+                    ->orWhere('barang.nama', 'like', '%' . $search . '%')
+                    ->get();
+                session()->flash('success', 'Data Ditemukan');
+                return view('pages.barang-masuk.index', compact('title', 'data'));
+            } else {
+                $data  = DB::table('barang_masuk')
+                    ->join('barang', 'barang.id', '=', 'barang_masuk.barang_id')
+                    ->join('supplier', 'supplier.id', '=', 'barang_masuk.supplier_id')
+                    ->select('barang_masuk.*', 'supplier.nama as supplier', 'barang.nama')
+                    ->get();
+                return view('pages.barang-masuk.index', compact('title', 'data'));
+            }
+        } catch (\Exception $th) {
+            return back()->with('error', $th->getMessage());
+        }
     }
 
     /**

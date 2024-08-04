@@ -15,12 +15,30 @@ class BarangKeluarController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = 'Halaman Barang Keluar';
-        $data  = BarangKeluar::all();
+        $search = $request->search;
+        try {
+            if (isset($search) || $search != null) {
+                $data = DB::table('barang_keluar')->join('barang', 'barang.id', '=', 'barang_keluar.barang_id')
+                    ->select('barang_keluar.*',  'barang.nama')
+                    ->where('barang_keluar.kode', 'like', '%' . $search . '%')
+                    ->orWhere('barang.nama', 'like', '%' . $search . '%')
+                    ->get();
+                session()->flash('success', 'Data Ditemukan');
+                return view('pages.barang-keluar.index', compact('title', 'data'));
+            } else {
+                $data  = DB::table('barang_keluar')
+                    ->join('barang', 'barang.id', '=', 'barang_keluar.barang_id')
+                    ->select('barang_keluar.*',  'barang.nama')
+                    ->get();
 
-        return view('pages.barang-keluar.index', compact('title', 'data'));
+                return view('pages.barang-keluar.index', compact('title', 'data'));
+            }
+        } catch (\Exception $th) {
+            return back()->with('error', $th->getMessage());
+        }
     }
 
     /**
