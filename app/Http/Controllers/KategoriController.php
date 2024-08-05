@@ -25,8 +25,8 @@ class KategoriController extends Controller
                 $data  = Kategori::all();
                 return view('pages.kategori.index', compact('title', 'data'));
             }
-        } catch (\Throwable $th) {
-            //throw $th;
+        } catch (\Exception $th) {
+            return back()->with('error', $th->getMessage());
         }
     }
 
