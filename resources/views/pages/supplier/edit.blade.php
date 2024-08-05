@@ -32,7 +32,7 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="first-name-vertical">Kode Supplier</label>
-                                                <input type="text" id="first-name-vertical" class="form-control" readonly
+                                                <input type="text" id="first-name-vertical" class="form-control"
                                                     name="kode" value="{{ $supplier->kode }}">
                                                 @error('kode')
                                                     <div class="text-danger">{{ $message }}</div>
