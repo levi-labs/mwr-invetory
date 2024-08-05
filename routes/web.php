@@ -90,6 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::controller(SupplierController::class)->prefix('supplier')->group(function () {
         Route::get('/', 'index')->name('supplier.index');
+        Route::post('/search', 'index')->name('supplier.search');
         Route::get('/create', 'create')->name('supplier.create');
         Route::get('/show/{supplier}', 'show')->name('supplier.show');
         Route::post('/store', 'store')->name('supplier.store');
