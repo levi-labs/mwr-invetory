@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::controller(KategoriController::class)->prefix('kategori')->group(function () {
         Route::get('/', 'index')->name('kategori.index');
+        Route::post('/search', 'index')->name('kategori.search');
         Route::get('/create', 'create')->name('kategori.create');
         Route::get('/show/{kategori}', 'show')->name('kategori.show');
         Route::post('/store', 'store')->name('kategori.store');

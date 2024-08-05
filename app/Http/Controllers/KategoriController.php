@@ -10,11 +10,24 @@ class KategoriController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = 'Halaman Kategori';
-        $data  = Kategori::all();
-        return view('pages.kategori.index', compact('title', 'data'));
+        $search = $request->search;
+        try {
+            if (isset($search) || $search != null) {
+                $data = Kategori::where('kode', 'like', '%' . $search . '%')
+                    ->orWhere('nama', 'like', '%' . $search . '%')
+                    ->get();
+                session()->flash('success', 'Data Ditemukan');
+                return view('pages.kategori.index', compact('title', 'data'));
+            } else {
+                $data  = Kategori::all();
+                return view('pages.kategori.index', compact('title', 'data'));
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**
