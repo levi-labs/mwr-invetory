@@ -47,32 +47,27 @@
                                                     <tr>
                                                         <td>Kode :</td>
                                                         <td>{{ $barang->kode }}</td>
-                                                    </tr>
-                                                    <tr>
                                                         <td>Nama :</td>
                                                         <td>{{ $barang->nama }}</td>
-                                                    </tr>
-                                                    <tr>
                                                         <td>Stok :</td>
                                                         <td>{{ $barang->stok }}</td>
                                                     </tr>
+
                                                     <tr>
+
                                                         <td>Satuan :</td>
                                                         <td>{{ $barang->satuan }}</td>
-                                                    </tr>
-                                                    <tr>
                                                         <td>Harga :</td>
                                                         <td>{{ $barang->harga }}</td>
-                                                    </tr>
-                                                    <tr>
                                                         <td>Ukuran :</td>
                                                         <td>{{ $barang->ukuran }}</td>
                                                     </tr>
+
                                                     <tr>
+                                                        <td>Merk :</td>
+                                                        <td>{{ $barang->merk }}</td>
                                                         <td>Warna :</td>
                                                         <td>{{ $barang->warna }}</td>
-                                                    </tr>
-                                                    <tr>
                                                         <td>Kategori :</td>
                                                         <td>{{ $barang->kategori->nama }}</td>
                                                     </tr>

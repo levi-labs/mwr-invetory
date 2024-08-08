@@ -22,9 +22,11 @@ class BarangMasukController extends Controller
                 $data = DB::table('barang_masuk')
                     ->join('barang', 'barang.id', '=', 'barang_masuk.barang_id')
                     ->join('supplier', 'supplier.id', '=', 'barang_masuk.supplier_id')
-                    ->select('barang_masuk.*', 'supplier.nama as supplier', 'barang.nama')
+                    ->select('barang_masuk.*', 'supplier.nama as supplier', 'barang.nama', 'barang.kode as barang_kode')
                     ->where('barang_masuk.kode', 'like', '%' . $search . '%')
                     ->orWhere('barang.nama', 'like', '%' . $search . '%')
+                    ->orWhere('barang.kode', 'like', '%' . $search . '%')
+
                     ->get();
                 session()->flash('success', 'Data Ditemukan');
                 return view('pages.barang-masuk.index', compact('title', 'data'));
@@ -32,7 +34,8 @@ class BarangMasukController extends Controller
                 $data  = DB::table('barang_masuk')
                     ->join('barang', 'barang.id', '=', 'barang_masuk.barang_id')
                     ->join('supplier', 'supplier.id', '=', 'barang_masuk.supplier_id')
-                    ->select('barang_masuk.*', 'supplier.nama as supplier', 'barang.nama')
+                    ->select('barang_masuk.*', 'supplier.nama as supplier', 'barang.nama', 'barang.kode as barang_kode')
+
                     ->get();
                 return view('pages.barang-masuk.index', compact('title', 'data'));
             }

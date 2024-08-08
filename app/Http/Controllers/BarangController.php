@@ -18,10 +18,12 @@ class BarangController extends Controller
         $search = $request->search;
         try {
             if (isset($search) || $search != null) {
-                $data = Barang::where('kode', 'like', '%' . $search . '%')
-                    ->orWhere('nama', 'like', '%' . $search . '%')
-                    ->orWhere('kode', 'like', '%' . $search . '%')
+                $data = Barang::select('barang.*', 'kategori.nama as kategori')
+                    ->join('kategori', 'barang.kategori_id', '=', 'kategori.id')
+                    ->where('barang.kode', 'like', '%' . $search . '%')
+                    ->orWhere('barang.nama', 'like', '%' . $search . '%')
                     ->get();
+
                 session()->flash('success', 'Data Ditemukan');
                 return view('pages.barang.index', compact('title', 'data'));
             } else {
@@ -55,6 +57,8 @@ class BarangController extends Controller
             'kode' => 'required',
             'nama' => 'required',
             'stok' => 'required',
+            'merk' => 'required',
+            'ukuran' => 'required',
             'satuan' => 'required',
             'harga' => 'required',
             'kategori' => 'required',
@@ -67,6 +71,7 @@ class BarangController extends Controller
             $barang->kode           = $request->kode;
             $barang->nama           = $request->nama;
             $barang->stok           = $request->stok;
+            $barang->merk           = $request->merk;
             $barang->satuan         = $request->satuan;
             $barang->harga          = $request->harga;
             $barang->ukuran         = $request->ukuran;
@@ -115,6 +120,8 @@ class BarangController extends Controller
         $this->validate($request, [
             'kode' => 'required',
             'nama' => 'required',
+            'ukuran' => 'required',
+            'merk' => 'required',
             'stok' => 'required',
             'satuan' => 'required',
             'harga' => 'required',
@@ -128,6 +135,7 @@ class BarangController extends Controller
             $barang->kode           = $request->kode;
             $barang->nama           = $request->nama;
             $barang->stok           = $request->stok;
+            $barang->merk           = $request->merk;
             $barang->satuan         = $request->satuan;
             $barang->harga          = $request->harga;
             $barang->ukuran         = $request->ukuran;

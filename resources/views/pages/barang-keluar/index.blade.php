@@ -62,7 +62,8 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Kode</th>
+                                        <th>Kode Barang Keluar</th>
+                                        <th>Kode Barang</th>
                                         <th>Nama</th>
                                         <th>Qty</th>
                                         <th>Tanggal</th>
@@ -74,6 +75,7 @@
                                         <tr>
                                             <td class="text-bold-500">{{ $loop->iteration }}</td>
                                             <td>{{ $item->kode }}</td>
+                                            <td>{{ $item->barang->kode ?? $item->barang_kode }}</td>
                                             <td>{{ $item->nama }}</td>
                                             <td>{{ $item->qty }}</td>
                                             <td>{{ $item->tanggal }}</td>

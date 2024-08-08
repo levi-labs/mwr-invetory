@@ -98,6 +98,16 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
+                                                <label for="merk">Merk</label>
+                                                <input type="text" id="merk" class="form-control" name="merk"
+                                                    min="0" placeholder="">
+                                                @error('merk')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
                                                 <label for="warna">Warna</label>
                                                 <input type="text" id="warna" class="form-control" name="warna"
                                                     min="0" placeholder="">

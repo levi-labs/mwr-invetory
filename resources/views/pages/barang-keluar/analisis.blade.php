@@ -34,8 +34,8 @@
                                                 <select class="form-select" id="periode" name="periode" required>
                                                     <option selected disabled>Pilih Periode</option>
                                                     <option value="1">1 Bulan</option>
+                                                    <option value="2">2 Bulan</option>
                                                     <option value="3">3 Bulan</option>
-                                                    <option value="6">6 Bulan</option>
                                                 </select>
                                                 @error('periode')
                                                     <div class="text-danger">{{ $message }}</div>
@@ -123,7 +123,7 @@
             var selectedValue = this.value;
             var submitBtn = document.getElementById('submitBtn');
 
-            if (selectedValue == '1' || selectedValue == '3' || selectedValue == '6') {
+            if (selectedValue == '1' || selectedValue == '2' || selectedValue == '3') {
                 submitBtn.disabled = false;
                 submitBtn.type = 'submit';
             } else {

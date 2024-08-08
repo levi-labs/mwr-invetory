@@ -22,16 +22,17 @@ class BarangKeluarController extends Controller
         try {
             if (isset($search) || $search != null) {
                 $data = DB::table('barang_keluar')->join('barang', 'barang.id', '=', 'barang_keluar.barang_id')
-                    ->select('barang_keluar.*',  'barang.nama')
+                    ->select('barang_keluar.*',  'barang.nama', 'barang.kode as barang_kode')
                     ->where('barang_keluar.kode', 'like', '%' . $search . '%')
                     ->orWhere('barang.nama', 'like', '%' . $search . '%')
+                    ->orWhere('barang.kode', 'like', '%' . $search . '%')
                     ->get();
                 session()->flash('success', 'Data Ditemukan');
                 return view('pages.barang-keluar.index', compact('title', 'data'));
             } else {
                 $data  = DB::table('barang_keluar')
                     ->join('barang', 'barang.id', '=', 'barang_keluar.barang_id')
-                    ->select('barang_keluar.*',  'barang.nama')
+                    ->select('barang_keluar.*',  'barang.nama', 'barang.kode as barang_kode')
                     ->get();
 
                 return view('pages.barang-keluar.index', compact('title', 'data'));
@@ -193,7 +194,9 @@ class BarangKeluarController extends Controller
 
             $data = DB::table('barang_keluar')
                 ->join('barang', 'barang_keluar.barang_id', '=', 'barang.id')
-                ->selectRaw('YEAR(barang_keluar.tanggal) as year, MONTH(barang_keluar.tanggal) as month, barang.nama as nama_barang, SUM(barang_keluar.qty) as total_qty')
+                ->selectRaw('YEAR(barang_keluar.tanggal) as year, MONTH(barang_keluar.tanggal) as month, 
+                barang.nama as nama_barang, 
+                SUM(barang_keluar.qty) as total_qty')
                 ->groupByRaw('YEAR(barang_keluar.tanggal), MONTH(barang_keluar.tanggal), barang.nama')
                 ->get();
 

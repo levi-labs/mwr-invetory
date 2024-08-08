@@ -57,7 +57,7 @@
                                                 <select class="form-select" id="kategori" name="kategori">
                                                     <option selected disabled>Pilih Kategori</option>
                                                     @foreach ($kategori as $item)
-                                                        <option {{ $item->id == $barang->id ? 'selected' : '' }}
+                                                        <option {{ $item->id == $barang->kategori_id ? 'selected' : '' }}
                                                             value="{{ $item->id }}">{{ $item->nama }}</option>
                                                     @endforeach
                                                 </select>
@@ -92,6 +92,16 @@
                                                 <input type="text" id="ukuran" class="form-control" name="ukuran"
                                                     min="0" placeholder="" value="{{ $barang->ukuran }}">
                                                 @error('ukuran')
+                                                    <div class="text-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="merk">Merk</label>
+                                                <input type="text" id="merk" class="form-control" name="merk"
+                                                    placeholder="" value="{{ $barang->merk }}">
+                                                @error('merk')
                                                     <div class="text-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
